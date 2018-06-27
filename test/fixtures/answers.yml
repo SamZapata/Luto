@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_numeric: 1
+  type_decision: false
+  type_date: 2018-06-23
+  type_text: MyText
+
+two:
+  type_numeric: 1
+  type_decision: false
+  type_date: 2018-06-23
+  type_text: MyText

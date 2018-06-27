@@ -1,0 +1,2 @@
+module TipoAnswersHelper
+end

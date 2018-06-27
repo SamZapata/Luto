@@ -1,0 +1,23 @@
+<%= form_for(form) do |f| %>
+  <% if form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(form.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+      <ul>
+      <% form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions" align="center">
+    <%= f.submit 'IR A LA ENCUESTA', class: "btn btn-success" %>
+  </div>
+
+  <div class="field" align="center">
+    <%= f.label :acepto %>
+    <%= f.check_box :observation %>
+  </div>
+
+<% end %>

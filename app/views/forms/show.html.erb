@@ -1,0 +1,127 @@
+<!-- Form -->
+<div class="container">
+  </br>
+  <div class="container" align="center">
+  	<h2 style="color: red">Encuesta de Satisfacción</h2>
+	</br>
+	<h4>Responde a cada pregunta según la opción correspondiente</h4>
+  </div>
+  <div class="row">
+  	</br>
+    
+    <!-- Show questions by consecutive and register each answer -->
+    	
+    <% Question.all.map do |q|%>
+
+		<div class="container border-top" >
+			</br>
+			<div class="row">
+				<h5 > Pregunta <%= q.id %>: </h5>
+			</div>
+			<div class="row">
+				<h6><%= q.description %></h6>
+			</div>
+			
+			<!-- ====== Save Answers ====== -->
+			<% answer = Answer.new %>
+		    <%= form_for(answer) do |f| %>
+			  <% if answer.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+			      <ul>
+			      <% answer.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+
+			 	<div class="field">
+				    <!-- condition to save answers with type answer Rango 5 -->
+				    <% if q.type_answer === 'Rango 5' %>
+						<% f.label :Formulario_No %>
+						<% u = request.fullpath.split('/') %>
+						<% consecutive = u.last.to_s  %>
+						<%= f.hidden_field :form_id, :value => consecutive, :readonly=>true %>
+
+						<div class="field">
+						    <% f.label :Pregunta_No %>
+						    <% code_q = q.id  %>
+						    <%= f.hidden_field :question_id, :value=>code_q, :readonly=>true %>
+						</div>
+
+						<div class="row">
+						<div class="field">
+						    <%= f.select :value, options_for_select(["seleccionar","1","2","3","4","5"]) %>
+						</div>
+
+						<div class="actions">
+							<%= f.submit 'Guardar Respuesta', class: "btn btn-success" %>
+						</div>
+						</div>
+					<% end %>
+
+					<!-- condition to save answers with type answer Number -->
+					<% if q.type_answer === 'Numero Entero' %>
+						<% f.label :Formulario_No %>
+						<% u = request.fullpath.split('/') %>
+						<% consecutive = u.last.to_s  %>
+						<%= f.hidden_field :form_id, :value => consecutive, :readonly=>true %>
+
+						<div class="field">
+						    <% f.label :Pregunta_No %>
+						    <% code_q = q.id  %>
+						    <%= f.hidden_field :question_id, :value=>code_q, :readonly=>true %>
+						</div>
+
+						<div class="row">
+						<div class="field">
+						    <%= f.number_field :value %>
+						</div>
+
+						<div class="actions">
+							<%= f.submit 'Guardar Respuesta', class: "btn btn-success" %>
+						</div>
+						</div>
+					<% end %>
+
+					<!-- condition to save answers with type answer Boolean -->
+					<% if q.type_answer === 'Si o No' %>
+						<% f.label :Formulario_No %>
+						<% u = request.fullpath.split('/') %>
+						<% consecutive = u.last.to_s  %>
+						<%= f.hidden_field :form_id, :value => consecutive, :readonly=>true %>
+
+						<div class="field">
+						    <% f.label :Pregunta_No %>
+						    <% code_q = q.id  %>
+						    <%= f.hidden_field :question_id, :value=>code_q, :readonly=>true %>
+						</div>
+
+						<div class="row">
+						<div class="field">
+						    <%= f.select :value, options_for_select(["seleccionar","Si","No"]) %>
+						</div>
+
+						<div class="actions">
+							<%= f.submit 'Guardar Respuesta', class: "btn btn-success" %>
+						</div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+    <% end -%>
+    </br>
+
+    <div class="container text-center">
+    	<div class="thumbnail" style="border-style: solid;">
+    		<h4><%= link_to 'Terminar', '/' %></h4>
+    	</div>
+    </div>
+
+
+  </div>
+</div>
+

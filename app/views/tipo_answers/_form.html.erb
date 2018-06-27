@@ -1,0 +1,22 @@
+<%= form_for(tipo_answer) do |f| %>
+  <% if tipo_answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tipo_answer.errors.count, "error") %> prohibited this tipo_answer from being saved:</h2>
+
+      <ul>
+      <% tipo_answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :topic %>
+    <%= f.text_field :topic %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

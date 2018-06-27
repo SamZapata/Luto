@@ -1,0 +1,28 @@
+<%= form_for(question) do |f| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Descripción %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Tipo_de_Respuesta %>
+    <%= f.select(:type_answer, TipoAnswer.all.collect {|a| [a.topic]},{prompt: 'Tipo de Resupuesta'},{} )%>
+    
+  </div>
+
+  <div >
+    <%= f.submit %>
+  </div>
+<% end %>

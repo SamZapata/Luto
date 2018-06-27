@@ -1,0 +1,65 @@
+<!-- ================================================================================ -->
+<!-- Test Analisistem -->
+<!-- Project: LUTO FORM -->
+<!-- Author: Johnny Zapata Serna -->
+<!-- Description: program to evaluate quality of Luto Clinic implementing a form-->
+<!-- ================================================================================ -->
+
+<div class="container">
+	<h1 align="center" style="color: red">CLINICA LUTO</h1>
+	</br>
+	<h3 align="center">Bienvenidos y bienvenidas a nuestro sistema de evaluación de la calidad de nuestros servicios.</br> Te invitamos a contestar las siguientes preguntas con el ánimo de que nos ayudes a mejorar </br> y así ofrecerte día a día una mejor atención.</h3>
+</div>
+
+<!-- Form -->
+<div class="container">
+	</br>
+	<h2 align="center" style="color: red">Encuesta de Satisfacción</h2>
+	</br>
+	<h4>Responde a cada pregunta según la opción correspondiente</h4>
+	<div class="row">
+		<% Question.all.collect do |q| %>
+			<% a = Question.count %>
+				<h4>
+					<%= q.id %>
+					- <%= q.description %>
+				</h4>
+				</br>
+
+				<!-- Validate answer value -->
+				<% if q.type_answer === 'Rango 5' %>
+					<%= r = select_tag :answer, options_for_select(["seleccionar","1","2","3","4","5"]) %>
+				<% end %>
+
+				<% if q.type_answer === 'Numero Entero' %>
+    				<%= number_field :answer, :value %>
+				<% end %>
+
+				<% if q.type_answer === 'Si o No' %>
+    				<%= select_tag :answer, options_for_select(["seleccionar","Si","No"]) %>
+				<% end %>
+
+		<% end -%>
+	</div>
+</div>
+
+
+
+	<% for i in i..a %>
+    		<%= render 'answer/form', form: @form %>
+    <% end %>
+    
+<div class="field">
+    <%= f.label :Formulario_No %>
+    <%= f.text_field :form_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Pregunta_No %>
+    <%= f.number_field :question_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Valor_Respuesta %>
+    <%= f.text_field :value %>
+  </div>
