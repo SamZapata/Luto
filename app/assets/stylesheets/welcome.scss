@@ -3,9 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .bg-img{
-    background: url('doctor-estetoscopio-fondo-hospital.jpg') no-repeat ;
-    background-size: 100%;
-    /*min-height: 630px;*/
+    background: url('doctor-estetoscopio-fondo-hospital.jpg');
+ 
+    /* Full height */
+    height: 50%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {

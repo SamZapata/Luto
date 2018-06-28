@@ -1,27 +1,33 @@
-<p id="notice"><%= notice %></p>
+<!-- ================================================================================ -->
+<!-- Test Analisistem -->
+<!-- Project: LUTO FORM -->
+<!-- Author: Johnny Zapata Serna -->
+<!-- Description: program to evaluate quality of Luto Clinic implementing a form-->
+<!-- ================================================================================ -->
 
-<h1>Forms</h1>
+<div class="container">
+  <h1>Formularios Abiertos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Observation</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @forms.each do |form| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= form.observation %></td>
-        <td><%= link_to 'Show', form %></td>
-        <td><%= link_to 'Edit', edit_form_path(form) %></td>
-        <td><%= link_to 'Destroy', form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Observation</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @forms.each do |form| %>
+        <tr>
+          <td><%= form.observation %></td>
+          <td><%= link_to 'Show', form %></td>
+          <td><%= link_to 'Edit', edit_form_path(form) %></td>
+          <td><%= link_to 'Destroy', form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 
 <%= link_to 'New Form', new_form_path %>
